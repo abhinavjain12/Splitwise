@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+</head>
+<body>
+    <h1>Add New Expense</h1>
+    <form action="/add_expense" method="POST">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br><br>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required><br><br>
+
+        <label for="participants">Participants:</label><br>
+        {% for id, user in users.items() %}
+            <input type="checkbox" name="participants" value="{{ id }}">{{ user['name'] }}<br>
+        {% endfor %}
+        <br>
+
+        <label for="split_method">Split Method:</label><br>
+        <input type="radio" name="split_method" value="equal" checked> Equal Split<br>
+        <input type="radio" name="split_method" value="exact"> Exact Amount<br>
+        <input type="radio" name="split_method" value="percentage"> Percentage Split<br><br>
+
+        <!-- For exact amounts or percentage, provide dynamic input fields -->
+        <div id="extra_fields">
+            <!-- Dynamically generate based on participants using JavaScript -->
+        </div>
+
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <script>
+        // JavaScript logic to dynamically show fields for exact/percentage splits based on participants
+    </script>
+</body>
+</html>

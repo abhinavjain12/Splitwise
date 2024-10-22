@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses</title>
+</head>
+<body>
+    <h1>Expense List</h1>
+    <ul>
+        {% for expense in expenses %}
+            <li>
+                <strong>{{ expense['description'] }} - {{ expense['amount'] }} USD</strong>
+                <br>Payer: {{ users[expense['payer']|int]['name'] }}
+            </li>
+            <ul>
+                {% for user_id, split in expense['splits'].items() %}
+                    <li>{{ users[user_id|int]['name'] }} owes {{ split }} USD</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+
+    <a href="/add_expense">Add New Expense</a>
+</body>
+</html>
